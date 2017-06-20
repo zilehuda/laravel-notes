@@ -1,0 +1,81 @@
+--directory--
+
+console -> agr command line application bnani ho
+event -> event based thing
+exception -> exception handling try and catch
+http
+	controller
+	middleware -> controller method hit honay se pehle
+	route.php
+listener -> event per action listener me define
+provider -> laravel k package service provider me atay he
+database
+	factories -> if need data in pagination test so it does for us
+	migration -> vcs for db
+	seed -> db me by default kuch save ho
+
+
+
+--route--
+Route::get('admin', 'Controller@method');
+
+ to receive variable -> closure
+Route::get('admin/{number}', 'Controller@method');
+
+ where condition
+Route::get('admin/{number}', 'Controller@method')->where(['number'=>"[0-9]+"]);
+
+ nameroute
+Route::get('admin/{number}', 'Controller@method')->where(['number'=>"[0-9]+"])
+->name('name-fu');
+Route::get('admin', function ()
+{
+ echo route('name-fu');
+});
+
+or second way
+
+Route::get('/',[
+'as' => "name-fu",
+'uses' => "Controller@method"
+]
+}
+
+ routeGroup -> authentication on all method
+
+Route::group(['middleware'=>'web',
+'namespace'=>'admin',  <- this thing add admin prefix if controller is in subfolder
+'prefix' => admin-] <- this will prefix in url
+,function()
+{
+//idher all route define karo
+Route::get('dashboard',funct...);
+});
+
+ any <- work on both post and get
+Route::any();
+
+ match <- multiple type of request
+
+Route::match(['put','patch'],'admin',function....);
+
+
+ if wanted to route using controller then make a controller for eg. admincontroller
+//in route file
+Route::('prefix',ControllerName);
+in controller make a class and prefix get or post which type of function its for eg
+public function getDashboard
+
+
+--pass data to vew--
+$data = ['zilay','bilal','ibad'];
+return view('home',compat('$data'))->with('name',$data);
+or
+return view('home')->with('name',$data);
+or
+return view('home')->with('name'=>$data,'addr'=>$addr);
+or
+return view('home')->withName($data);
+
+
+
