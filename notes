@@ -78,4 +78,10 @@ or
 return view('home')->withName($data);
 
 
-
+--middlewares--
+artisan make:middleware name
+-middleware register in http kernal
+-middleware -> hit on all
+-routemiddleware -> hit on perticular route
+-middlewaregroup -> aik sath boht saray
+Route::get('/',func...{})->middleware('logger');
