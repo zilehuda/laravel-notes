@@ -69,7 +69,9 @@ public function getDashboard
 
 --pass data to vew--
 $data = ['zilay','bilal','ibad'];
-return view('home',compat('$data'))->with('name',$data);
+return view('home',compat('$data'));
+or
+return view('home',['data'=>$data]);
 or
 return view('home')->with('name',$data);
 or
@@ -84,4 +86,39 @@ artisan make:middleware name
 -middleware -> hit on all
 -routemiddleware -> hit on perticular route
 -middlewaregroup -> aik sath boht saray
+
 Route::get('/',func...{})->middleware('logger');
+or
+Route::get('/',[
+'as' => function(){},
+'middleware' => "logger"
+]
+}
+
+--blade intro--
+-aik file se dosri file ko extende kerna -> inheritance ->header,footer
+-also work as return view('layout.master');
+-@yield('content'); <- include type, content extend ker rha he,waha likho ge jaha content extende karay ga
+-@extend('layout.master') -> write in content.blade.php
+@section('content') <h1>..... @endsection -> jaha se jaha tak chai ge
+
+--echoing with blade--
+in blade.php file write variable in {{ variable }}
+@{{ variable }} -> to not make it parse use 
+{{ variable or 'not available' }}
+
+--if/else & loop--
+@if
+@endif
+@if(!cond) = @unless(cond)
+@for(cond)
+@endfor
+@forelse()
+@empty <- if empty
+@forelse 
+
+--section override--
+@parent
+
+--include with blade--
+@include('path_of_file')
